@@ -5,7 +5,6 @@ import 'dart:math' as math;
 import 'package:collection/collection.dart';
 import 'package:ffi/ffi.dart';
 import 'package:logging/logging.dart' as logging;
-import 'package:resource_portable/resource.dart';
 import 'package:win32/win32.dart';
 
 import 'win32_constants.dart';
@@ -1132,15 +1131,6 @@ class Window extends WindowBase<Window> {
           timeout: timeout,
           maxConsecutiveDispatches: maxConsecutiveDispatches,
           condition: condition);
-
-  /// Resolves [path] to [Uri].
-  /// - See [Resource].
-  static Future<Uri> resolveFileUri(String path) => Resource(path).uriResolved;
-
-  /// Resolves [path] to a local file path.
-  /// - See [Resource].
-  static Future<String> resolveFilePath(String path) =>
-      resolveFileUri(path).then((uri) => uri.toFilePath());
 
   /// Returns the system fonts.
   /// - Calls [SystemParametersInfo] [SPI_GETNONCLIENTMETRICS].
