@@ -1184,6 +1184,9 @@ class Window extends WindowBase<Window> {
   /// The style flags of this [Window] to pass to [CreateWindowEx].
   final int windowStyles;
 
+  /// The Extended style flags of this [Window] to pass to [CreateWindowEx].
+  final int extendedWindowStyles;
+
   /// The background color of this [Window] (if applicable).
   int? bgColor;
 
@@ -1203,6 +1206,7 @@ class Window extends WindowBase<Window> {
       {required this.windowClass,
       this.windowName,
       this.windowStyles = 0,
+      this.extendedWindowStyles = 0,
       super.x,
       super.y,
       super.width,
@@ -1272,7 +1276,7 @@ class Window extends WindowBase<Window> {
   /// - Allows @[override].
   int createWindowImpl(Pointer<Uint32> createIdPtr) => CreateWindowEx(
       // Optional window styles:
-      0,
+      extendedWindowStyles,
 
       // Window class:
       windowClass.classNameNative,
@@ -1443,7 +1447,7 @@ class Window extends WindowBase<Window> {
 
   @override
   String toString() {
-    return 'Window#$_hwnd{windowName: $windowName, windowStyles: $windowStyles, x: $x, y: $y, width: $width, height: $height, bgColor: $bgColor, parent: $parent}@$windowClass';
+    return 'Window#$_hwnd{windowName: $windowName, windowStyles: $windowStyles, extendedWindowStyles: $extendedWindowStyles x: $x, y: $y, width: $width, height: $height, bgColor: $bgColor, parent: $parent}@$windowClass';
   }
 }
 
@@ -1462,6 +1466,7 @@ class ChildWindow extends Window {
     int? id,
     required super.windowClass,
     super.windowName,
+    super.extendedWindowStyles = 0,
     super.windowStyles = 0,
     super.x,
     super.y,
