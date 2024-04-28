@@ -69,7 +69,7 @@ class MainWindow extends Window {
   // Declare the main window custom class:
   static final mainWindowClass = WindowClass.custom(
     className: 'mainWindow',
-    windowProc: Pointer.fromFunction<WindowProc>(mainWindowProc, 0),
+    windowProc: Pointer.fromFunction<WNDPROC>(mainWindowProc, 0),
     bgColor: RGB(255, 255, 255),
     useDarkMode: true,
     titleColor: RGB(32, 32, 32),
