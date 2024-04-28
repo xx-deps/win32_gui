@@ -388,7 +388,7 @@ class Dialog<R> extends WindowBase<Dialog> {
 
     var idx = 0;
 
-    idx += templatePtr.elementAt(idx).cast<DLGTEMPLATE>().setDialog(
+    idx += (templatePtr + idx).cast<DLGTEMPLATE>().setDialog(
         style: style,
         title: title ?? '',
         cdit: items.length,
@@ -400,7 +400,7 @@ class Dialog<R> extends WindowBase<Dialog> {
         fontSize: fontSize ?? 0);
 
     for (var item in items) {
-      idx += templatePtr.elementAt(idx).cast<DLGITEMTEMPLATE>().setDialogItem(
+      idx += (templatePtr + idx).cast<DLGITEMTEMPLATE>().setDialogItem(
           style: item.style,
           dwExtendedStyle: item.dwExtendedStyle,
           x: item.x,
